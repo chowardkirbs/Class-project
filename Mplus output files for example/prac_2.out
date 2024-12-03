@@ -1,0 +1,795 @@
+Mplus VERSION 8.3
+MUTHEN & MUTHEN
+10/26/2024  11:07 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  BIFACTOR MIXTURE TEST CODE
+  DATA:
+  FILE = "C:/Users/chowardk/Box/4n500/prac_c1_2_da0c7f8ba971d1ce034d2538708edb6d.dat";
+
+  VARIABLE:
+  NAMES = y1 y2 y3 y4 y5 y6 y7 y8;
+   MISSING=.;
+   !NAMES= y1-y8 lc;
+    USEVARIABLES ARE y1-y8;
+    CLASSES = c(2);
+  ANALYSIS:
+  type = mixture;
+   PROCESSORs = 4;
+   STARTS = 100 10;
+   stiteration = 20;
+  MODEL:
+     %overall%
+   !factor loadings
+   g by y1*
+     y2-y8 ;
+   s1 by y1*
+     y2-y4;
+   s2 by y5*
+     y6-y8;
+   !item residual variances
+   ! y1-y8; ! constrained equal by default
+   !item means
+   [y1-y8] (it1-it8);
+   !factor variance
+   g-s2@1; ! factors are standardized
+   !factor covariance(orthogonal)
+   g with s1@0;
+   g with s2@0;
+   s1 with s2@0;
+   !effect size
+   [g s1 s2];
+   %c#2%
+    !factor loadings
+    g by y1*
+     y2-y8 ;
+   s1 by y1*
+     y2-y4;
+   s2 by y5*
+     y6-y8;
+   !factor variance
+   g-s2@1;
+   !factor covariance(orthogonal)
+   g with s1@0;
+   g with s2@0;
+   s1 with s2@0;
+  OUTPUT:
+  TECH11;
+
+
+
+   1 ERROR(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+BIFACTOR MIXTURE TEST CODE
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         500
+
+Number of dependent variables                                    8
+Number of independent variables                                  0
+Number of continuous latent variables                            3
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Continuous
+   Y1          Y2          Y3          Y4          Y5          Y6
+   Y7          Y8
+
+Continuous latent variables
+   G           S1          S2
+
+Categorical latent variables
+   C
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Random Starts Specifications
+  Number of initial stage random starts                        100
+  Number of final stage optimizations                           10
+  Number of initial stage iterations                            20
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+
+Input data file(s)
+  C:/Users/chowardk/Box/4n500/prac_c1_2_da0c7f8ba971d1ce034d2538708edb6d.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
+     Number of y missing data patterns           1
+     Number of u missing data patterns           0
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR Y
+
+
+           Covariance Coverage
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+ Y1             1.000
+ Y2             1.000         1.000
+ Y3             1.000         1.000         1.000
+ Y4             1.000         1.000         1.000         1.000
+ Y5             1.000         1.000         1.000         1.000         1.000
+ Y6             1.000         1.000         1.000         1.000         1.000
+ Y7             1.000         1.000         1.000         1.000         1.000
+ Y8             1.000         1.000         1.000         1.000         1.000
+
+
+           Covariance Coverage
+              Y6            Y7            Y8
+              ________      ________      ________
+ Y6             1.000
+ Y7             1.000         1.000
+ Y8             1.000         1.000         1.000
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     Y1                   -0.012       0.043      -3.240    0.20%      -0.889     -0.260      0.009
+             500.000       1.060       0.186       3.324    0.20%       0.249      0.812
+     Y2                    0.011      -0.021      -2.880    0.20%      -0.830     -0.218      0.021
+             500.000       1.042      -0.010       2.887    0.20%       0.267      0.866
+     Y3                   -0.043       0.018      -2.847    0.20%      -0.904     -0.304      0.013
+             500.000       1.052      -0.093       3.023    0.20%       0.271      0.798
+     Y4                    0.003       0.060      -2.811    0.20%      -0.865     -0.187     -0.004
+             500.000       1.066       0.151       3.249    0.20%       0.240      0.878
+     Y5                   -0.004       0.065      -2.765    0.20%      -0.889     -0.294     -0.010
+             500.000       1.055      -0.103       3.325    0.20%       0.245      0.875
+     Y6                    0.011       0.165      -3.063    0.20%      -0.906     -0.281     -0.005
+             500.000       1.036      -0.129       3.056    0.20%       0.236      0.862
+     Y7                   -0.028      -0.006      -2.715    0.20%      -0.856     -0.311     -0.058
+             500.000       1.002      -0.343       2.303    0.20%       0.210      0.825
+     Y8                    0.010      -0.027      -3.212    0.20%      -0.882     -0.272     -0.008
+             500.000       1.065      -0.179       2.981    0.20%       0.268      0.940
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+
+3 perturbed starting value run(s) did not converge.
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+           -4996.930  570908           98
+           -4998.047  170954           86
+           -4999.656  754100           56
+           -4999.864  939021           8
+           -5002.561  967237           48
+           -5002.750  415931           10
+
+4 perturbed starting value run(s) did not converge.
+
+
+
+     WARNING:  THE BEST LOGLIKELIHOOD VALUE WAS NOT REPLICATED.  THE
+     SOLUTION MAY NOT BE TRUSTWORTHY DUE TO LOCAL MAXIMA.  INCREASE THE
+     NUMBER OF RANDOM STARTS.
+
+     THE STANDARD ERRORS OF THE MODEL PARAMETER ESTIMATES MAY NOT BE
+     TRUSTWORTHY FOR SOME PARAMETERS DUE TO A NON-POSITIVE DEFINITE
+     FIRST-ORDER DERIVATIVE PRODUCT MATRIX.  THIS MAY BE DUE TO THE STARTING
+     VALUES BUT MAY ALSO BE AN INDICATION OF MODEL NONIDENTIFICATION.  THE
+     CONDITION NUMBER IS       0.697D-14.  PROBLEM INVOLVING THE FOLLOWING PARAMETER:
+     Parameter 35, %C#1%: [ S2 ]
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       52
+
+Loglikelihood
+
+          H0 Value                       -4996.930
+          H0 Scaling Correction Factor      1.1239
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   10097.861
+          Bayesian (BIC)                 10317.020
+          Sample-Size Adjusted BIC       10151.969
+            (n* = (n + 2) / 24)
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1        268.89001          0.53778
+       2        231.10999          0.46222
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1        268.89001          0.53778
+       2        231.10999          0.46222
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1              270          0.54000
+       2              230          0.46000
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.577
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
+by Latent Class (Column)
+
+           1        2
+
+    1   0.880    0.120
+    2   0.137    0.863
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1        2
+
+    1   0.883    0.117
+    2   0.141    0.859
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1        2
+
+    1      2.023    0.000
+    2     -1.810    0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ G        BY
+    Y1                 0.400      0.144      2.785      0.005
+    Y2                 0.425      0.102      4.173      0.000
+    Y3                 0.359      0.085      4.213      0.000
+    Y4                 0.312      0.191      1.633      0.102
+    Y5                 0.691      0.120      5.779      0.000
+    Y6                 0.607      0.060     10.060      0.000
+    Y7                 0.817      0.102      8.033      0.000
+    Y8                 0.619      0.119      5.217      0.000
+
+ S1       BY
+    Y1                 0.525      0.074      7.129      0.000
+    Y2                 0.447      0.096      4.655      0.000
+    Y3                 0.451      0.134      3.363      0.001
+    Y4                 0.582      0.073      7.996      0.000
+
+ S2       BY
+    Y5                -0.001      0.004     -0.214      0.831
+    Y6                 0.000      0.002      0.033      0.973
+    Y7                -0.003      0.004     -0.709      0.478
+    Y8                -0.001      0.003     -0.218      0.828
+
+ G        WITH
+    S1                 0.000      0.000    999.000    999.000
+    S2                 0.000      0.000    999.000    999.000
+
+ S1       WITH
+    S2                 0.000      0.000    999.000    999.000
+
+ Means
+    G                 -1.728      1.956     -0.883      0.377
+    S1                -0.424      1.872     -0.226      0.821
+    S2              -517.974    255.911     -2.024      0.043
+
+ Intercepts
+    Y1                 0.478      0.190      2.516      0.012
+    Y2                 0.506      0.215      2.357      0.018
+    Y3                 0.394      0.109      3.625      0.000
+    Y4                 0.423      0.109      3.899      0.000
+    Y5                 0.427      0.105      4.088      0.000
+    Y6                 0.591      0.366      1.614      0.107
+    Y7                -0.138      0.161     -0.857      0.391
+    Y8                 0.392      0.110      3.559      0.000
+
+ Variances
+    G                  1.000      0.000    999.000    999.000
+    S1                 1.000      0.000    999.000    999.000
+    S2                 1.000      0.000    999.000    999.000
+
+ Residual Variances
+    Y1                 0.403      0.042      9.616      0.000
+    Y2                 0.480      0.036     13.184      0.000
+    Y3                 0.604      0.056     10.756      0.000
+    Y4                 0.492      0.049     10.106      0.000
+    Y5                 0.454      0.053      8.589      0.000
+    Y6                 0.324      0.048      6.704      0.000
+    Y7                 0.333      0.077      4.354      0.000
+    Y8                 0.516      0.039     13.193      0.000
+
+Latent Class 2
+
+ G        BY
+    Y1                 0.530      0.074      7.124      0.000
+    Y2                 0.494      0.070      7.009      0.000
+    Y3                 0.155      0.076      2.054      0.040
+    Y4                 0.544      0.099      5.473      0.000
+    Y5                 0.588      0.097      6.033      0.000
+    Y6                 0.597      0.182      3.286      0.001
+    Y7                 0.804      0.095      8.464      0.000
+    Y8                 0.678      0.080      8.466      0.000
+
+ S1       BY
+    Y1                 0.425      0.088      4.829      0.000
+    Y2                 0.264      0.090      2.952      0.003
+    Y3                 0.452      0.091      4.990      0.000
+    Y4                 0.325      0.118      2.740      0.006
+
+ S2       BY
+    Y5                 0.212      0.115      1.845      0.065
+    Y6                -0.345      0.138     -2.499      0.012
+    Y7                 0.056      0.632      0.088      0.930
+    Y8                 0.071      0.223      0.320      0.749
+
+ G        WITH
+    S1                 0.000      0.000    999.000    999.000
+    S2                 0.000      0.000    999.000    999.000
+
+ S1       WITH
+    S2                 0.000      0.000    999.000    999.000
+
+ Means
+    G                  0.000      0.000    999.000    999.000
+    S1                 0.000      0.000    999.000    999.000
+    S2                 0.000      0.000    999.000    999.000
+
+ Intercepts
+    Y1                 0.478      0.190      2.516      0.012
+    Y2                 0.506      0.215      2.357      0.018
+    Y3                 0.394      0.109      3.625      0.000
+    Y4                 0.423      0.109      3.899      0.000
+    Y5                 0.427      0.105      4.088      0.000
+    Y6                 0.591      0.366      1.614      0.107
+    Y7                -0.138      0.161     -0.857      0.391
+    Y8                 0.392      0.110      3.559      0.000
+
+ Variances
+    G                  1.000      0.000    999.000    999.000
+    S1                 1.000      0.000    999.000    999.000
+    S2                 1.000      0.000    999.000    999.000
+
+ Residual Variances
+    Y1                 0.403      0.042      9.616      0.000
+    Y2                 0.480      0.036     13.184      0.000
+    Y3                 0.604      0.056     10.756      0.000
+    Y4                 0.492      0.049     10.106      0.000
+    Y5                 0.454      0.053      8.589      0.000
+    Y6                 0.324      0.048      6.704      0.000
+    Y7                 0.333      0.077      4.354      0.000
+    Y8                 0.516      0.039     13.193      0.000
+
+Categorical Latent Variables
+
+ Means
+    C#1                0.151      0.879      0.172      0.863
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.697E-14
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 1
+
+
+           NU
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+                    1             2             3             4             5
+
+
+           NU
+              Y6            Y7            Y8
+              ________      ________      ________
+                    6             7             8
+
+
+           LAMBDA
+              G             S1            S2
+              ________      ________      ________
+ Y1                 9            10             0
+ Y2                11            12             0
+ Y3                13            14             0
+ Y4                15            16             0
+ Y5                17             0            18
+ Y6                19             0            20
+ Y7                21             0            22
+ Y8                23             0            24
+
+
+           THETA
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+ Y1                25
+ Y2                 0            26
+ Y3                 0             0            27
+ Y4                 0             0             0            28
+ Y5                 0             0             0             0            29
+ Y6                 0             0             0             0             0
+ Y7                 0             0             0             0             0
+ Y8                 0             0             0             0             0
+
+
+           THETA
+              Y6            Y7            Y8
+              ________      ________      ________
+ Y6                30
+ Y7                 0            31
+ Y8                 0             0            32
+
+
+           ALPHA
+              G             S1            S2
+              ________      ________      ________
+                   33            34            35
+
+
+           BETA
+              G             S1            S2
+              ________      ________      ________
+ G                  0             0             0
+ S1                 0             0             0
+ S2                 0             0             0
+
+
+           PSI
+              G             S1            S2
+              ________      ________      ________
+ G                  0
+ S1                 0             0
+ S2                 0             0             0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 2
+
+
+           NU
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+                    1             2             3             4             5
+
+
+           NU
+              Y6            Y7            Y8
+              ________      ________      ________
+                    6             7             8
+
+
+           LAMBDA
+              G             S1            S2
+              ________      ________      ________
+ Y1                36            37             0
+ Y2                38            39             0
+ Y3                40            41             0
+ Y4                42            43             0
+ Y5                44             0            45
+ Y6                46             0            47
+ Y7                48             0            49
+ Y8                50             0            51
+
+
+           THETA
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+ Y1                25
+ Y2                 0            26
+ Y3                 0             0            27
+ Y4                 0             0             0            28
+ Y5                 0             0             0             0            29
+ Y6                 0             0             0             0             0
+ Y7                 0             0             0             0             0
+ Y8                 0             0             0             0             0
+
+
+           THETA
+              Y6            Y7            Y8
+              ________      ________      ________
+ Y6                30
+ Y7                 0            31
+ Y8                 0             0            32
+
+
+           ALPHA
+              G             S1            S2
+              ________      ________      ________
+                    0             0             0
+
+
+           BETA
+              G             S1            S2
+              ________      ________      ________
+ G                  0             0             0
+ S1                 0             0             0
+ S2                 0             0             0
+
+
+           PSI
+              G             S1            S2
+              ________      ________      ________
+ G                  0
+ S1                 0             0
+ S2                 0             0             0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2
+              ________      ________
+                   52             0
+
+
+     STARTING VALUES FOR LATENT CLASS 1
+
+
+           NU
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+               -0.012         0.011        -0.043         0.003        -0.004
+
+
+           NU
+              Y6            Y7            Y8
+              ________      ________      ________
+                0.011        -0.028         0.010
+
+
+           LAMBDA
+              G             S1            S2
+              ________      ________      ________
+ Y1             1.000         1.000         0.000
+ Y2             1.000         1.000         0.000
+ Y3             1.000         1.000         0.000
+ Y4             1.000         1.000         0.000
+ Y5             1.000         0.000         1.000
+ Y6             1.000         0.000         1.000
+ Y7             1.000         0.000         1.000
+ Y8             1.000         0.000         1.000
+
+
+           THETA
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+ Y1             0.530
+ Y2             0.000         0.521
+ Y3             0.000         0.000         0.526
+ Y4             0.000         0.000         0.000         0.533
+ Y5             0.000         0.000         0.000         0.000         0.527
+ Y6             0.000         0.000         0.000         0.000         0.000
+ Y7             0.000         0.000         0.000         0.000         0.000
+ Y8             0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              Y6            Y7            Y8
+              ________      ________      ________
+ Y6             0.518
+ Y7             0.000         0.501
+ Y8             0.000         0.000         0.532
+
+
+           ALPHA
+              G             S1            S2
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           BETA
+              G             S1            S2
+              ________      ________      ________
+ G              0.000         0.000         0.000
+ S1             0.000         0.000         0.000
+ S2             0.000         0.000         0.000
+
+
+           PSI
+              G             S1            S2
+              ________      ________      ________
+ G              1.000
+ S1             0.000         1.000
+ S2             0.000         0.000         1.000
+
+
+     STARTING VALUES FOR LATENT CLASS 2
+
+
+           NU
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+               -0.012         0.011        -0.043         0.003        -0.004
+
+
+           NU
+              Y6            Y7            Y8
+              ________      ________      ________
+                0.011        -0.028         0.010
+
+
+           LAMBDA
+              G             S1            S2
+              ________      ________      ________
+ Y1             1.000         1.000         0.000
+ Y2             1.000         1.000         0.000
+ Y3             1.000         1.000         0.000
+ Y4             1.000         1.000         0.000
+ Y5             1.000         0.000         1.000
+ Y6             1.000         0.000         1.000
+ Y7             1.000         0.000         1.000
+ Y8             1.000         0.000         1.000
+
+
+           THETA
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+ Y1             0.530
+ Y2             0.000         0.521
+ Y3             0.000         0.000         0.526
+ Y4             0.000         0.000         0.000         0.533
+ Y5             0.000         0.000         0.000         0.000         0.527
+ Y6             0.000         0.000         0.000         0.000         0.000
+ Y7             0.000         0.000         0.000         0.000         0.000
+ Y8             0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              Y6            Y7            Y8
+              ________      ________      ________
+ Y6             0.518
+ Y7             0.000         0.501
+ Y8             0.000         0.000         0.532
+
+
+           ALPHA
+              G             S1            S2
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           BETA
+              G             S1            S2
+              ________      ________      ________
+ G              0.000         0.000         0.000
+ S1             0.000         0.000         0.000
+ S2             0.000         0.000         0.000
+
+
+           PSI
+              G             S1            S2
+              ________      ________      ________
+ G              1.000
+ S1             0.000         1.000
+ S2             0.000         0.000         1.000
+
+
+     STARTING VALUES FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2
+              ________      ________
+                0.000         0.000
+
+
+TECHNICAL 11 OUTPUT
+
+     Random Starts Specifications for the k-1 Class Analysis Model
+        Number of initial stage random starts                 100
+        Number of final stage optimizations                    10
+
+
+
+     VUONG-LO-MENDELL-RUBIN LIKELIHOOD RATIO TEST FOR 1 (H0) VERSUS 2 CLASSES
+
+          H0 Loglikelihood Value                        -5018.602
+          2 Times the Loglikelihood Difference             43.343
+          Difference in the Number of Parameters               20
+          Mean                                            151.994
+          Standard Deviation                              133.897
+          P-Value                                          0.8618
+
+     LO-MENDELL-RUBIN ADJUSTED LRT TEST
+
+          Value                                            42.997
+          P-Value                                          0.8641
+
+
+     Beginning Time:  11:07:01
+        Ending Time:  11:08:47
+       Elapsed Time:  00:01:46
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

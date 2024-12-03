@@ -1,0 +1,11 @@
+Package: zzzcahkz
+Type: Package
+Title: Import .out file
+Version: 0.1.0
+Author: Courtney Howard
+Maintainer: Courtney Howard <chowardk@usf.edu>
+Description: bifactor 2 class model with 8 items/indicators
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.2
