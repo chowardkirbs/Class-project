@@ -1,27 +1,27 @@
 #' An import function that will
-#' reformat data into a usable form
+#' Reformat data into a usable form
 #' from Mplus .out files. This one
 #' is used to extract all the parameters
 #' from the .out file when the model is a 2-class bifactor
 #' model with 8 indicators. There is one general factor
 #' and two specific factors.
-#' FileName: file name of the first simulation
+#' FileName: the file name of the first simulation
 
 #' This has been used for multiple simulation scenarios that have
 #'5 different sample sizes (500,1000,2000,3500,5000) and 500 nrep
-#'per sample size. The naming convention for the different nrep
-#'is to change the number at the end. For example:
+#' per sample size. The naming convention for the different nrep
+#' is to change the number at the end. For example:
 #'prac_1.out
 #'prac_2.out
 #'prac_3.out
 #'....
 #'prac_500.out
-#'This made it easier to create a loop to change the
+#' This made it easier to create a loop to change the
 #'nrep number at the end of the file name.
 #'
 #' c1: used to combine path and file name
-#' @nreps: the number simulations run for the scenario condition
-#' @Filename: name of the Mplus .out file
+#' @nreps: the number simulations run for the scenario condition. 
+#' @Filename: name of the Mplus .out file. The Filename pattern for this script is prac_#.out where # is the nrep number.
 #' @path: directory path that the files are saved and the output is saved
 #' @return is a usable format of the parameter loadings
 #'
@@ -29,11 +29,8 @@
 #'
 #'@importFrom utils write.csv
 #'
+#'
 
-#path<-c("C:/Users/cahk/Box/Mplus simulation/Scenario 4/4n500")
-#FileName<-c("/prac_1.out")
-#Save1<-c("C:/Users/cahk/Box/Mplus simulation/Scenario 4/Parameter Estimates.csv")
-#nreps<-500
 
 
 
@@ -41,7 +38,7 @@ Import1<-function(nreps,path,FileName){
   library(MplusAutomation)
   library(rio)
 
-  c1<-paste0("C:/Users/cahk/Box/Mplus simulation/Scenario 4/4n500","/prac_1.out")
+  c1<-paste0(path,FileName)
 
   c2<-readModels(
     c1, recursive=TRUE)
@@ -121,7 +118,7 @@ Import1<-function(nreps,path,FileName){
   for (i in 2:nreps){
 
     ##   2 class model ####
-    c1<-paste0("C:/Users/cahk/Box/Mplus simulation/Scenario 4/4n500","/prac_",b[i],".out")
+    c1<-paste0(path,"/prac_",b[i],".out")
 
 
     c2<-readModels(
